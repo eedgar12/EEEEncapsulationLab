@@ -23,15 +23,67 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
     private final int MAX_RECS = 10;
     private final int NOT_FOUND = -1;
 
-    String partNo;
-    int foundIndex = NOT_FOUND;
+    private String partNo;
+    private int foundIndex = NOT_FOUND;
     private String partDesc;
-    double partPrice;
+    private double partPrice;
+
+    public String getPartNo() {
+        //needs validation
+        return partNo;
+    }
+
+    public void setPartNo(String partNo) {
+        //needs validation
+        this.partNo = partNo;
+    }
+
+    public int getFoundIndex() {
+        //needs validation
+        return foundIndex;
+    }
+
+    public void setFoundIndex(int foundIndex) {
+        //needs validation
+        this.foundIndex = foundIndex;
+    }
+
+    public String getPartDesc() {
+        //needs validation
+        return partDesc;
+    }
+
+    public void setPartDesc(String partDesc) {
+        //needs validation
+        this.partDesc = partDesc;
+    }
+
+    public double getPartPrice() {
+        //needs validation
+        return partPrice;
+    }
+
+    public void setPartPrice(double partPrice) {
+        //needs validation
+        this.partPrice = partPrice;
+    }
 
     String[] partNums = new String[10];
     String[] partDescs = new String[10];
     double[] partPrices = new double[10];
-    int emptyRow;
+    private int emptyRow;
+
+    public int getEmptyRow() {
+        //needs validation
+        return emptyRow;
+    }
+
+    public void setEmptyRow(int emptyRow) {
+        //needs validation
+        this.emptyRow = emptyRow;
+    }
+    
+    
 
     /** Creates new form MainGUI */
     public MainGUI() {
@@ -259,7 +311,7 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
     private void btnEnterRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterRecordActionPerformed
         foundIndex = NOT_FOUND;
 
-        partNo = this.txtNewProdNo.getText();
+        setPartNo(this.txtNewProdNo.getText());
         partDesc = this.txtNewProdDesc.getText();
         try {
             partPrice = Double.parseDouble(this.txtNewProdPrice.getText());
