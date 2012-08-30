@@ -11,27 +11,89 @@ import java.util.Date;
  * @version     1.01
  */
 public class Employee {
-    String firstName;
-    String lastName;
-    public String ssn;
-    public Date birthDate;
-    boolean metWithHr;
-    boolean metDeptStaff;
-    boolean reviewedDeptPolicies;
-    boolean movedIn;
-    String cubeId;
-
+    
+    private String firstName;
+    private String lastName;
+    private String ssn;
+    private Date birthDate;
+    private boolean metWithHr;
+    private boolean metDeptStaff;
+    private boolean reviewedDeptPolicies;
+    private boolean movedIn;
+    private String cubeId;
+    
     public Employee() {
 
     }
+    
+    public String getFirstName() {
+        //needs validation
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        //needs validation
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        //needs validation
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        //needs validation
+        this.lastName = lastName;
+    }
+
+    public Date getBirthDate() {
+        //needs validation
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        //needs validation
+        this.birthDate = birthDate;
+    }
+
+    public boolean isMovedIn() {
+        return movedIn;
+    }
+
+    public void setMovedIn(boolean movedIn) {
+        this.movedIn = movedIn;
+    }
+
+    public String getCubeId() {
+        //needs validation
+        return cubeId;
+    }
+
+    public void setCubeId(String cubeId) {
+        //needs validation
+        this.cubeId = cubeId;
+    }
+
+    public String getSsn() {
+        //needs validation
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        //needs validation
+        this.ssn = ssn;
+    }
+    
+
+    
 
     // Assume this must be performed first
-    public void meetWithHrForBenefitAndSalryInfo() {
+    private void meetWithHrForBenefitAndSalryInfo() {
         metWithHr = true;
     }
 
     // Assume this is must be performed second
-    public void meetDepartmentStaff() {
+    private void meetDepartmentStaff() {
         if(metWithHr) {
             metDeptStaff = true;
         } else {
@@ -41,7 +103,7 @@ public class Employee {
     }
 
     // Assume this must be performed third
-    public void reviewDeptPolicies() {
+    private void reviewDeptPolicies() {
         if(metWithHr && metDeptStaff) {
             reviewedDeptPolicies = true;
         } else {
@@ -52,8 +114,15 @@ public class Employee {
     }
 
     // Assume this must be performed 4th
-    public void moveIntoCubicle(String cubeId) {
+    private void moveIntoCubicle(String cubeId) {
+        //needs validation for CubeId
+        
         if(metWithHr && metDeptStaff && reviewedDeptPolicies) {
+            
+            /*Would there be a better way to do this so it doesn't have to pass 
+             * parameters through several methods?  Should I use getCubeId() here?
+             */
+            
             this.cubeId = cubeId;
             this.movedIn = true;
         } else {
@@ -65,6 +134,15 @@ public class Employee {
 
     }
 
+    
+    public void newEmployeeProcess(String cubeID){
+        meetWithHrForBenefitAndSalryInfo();
+        meetDepartmentStaff();
+        reviewDeptPolicies();
+        moveIntoCubicle(cubeId);
+    }
+    
+    
     public String getStatus() {
         if(metWithHr && metDeptStaff
            && reviewedDeptPolicies && movedIn) {
