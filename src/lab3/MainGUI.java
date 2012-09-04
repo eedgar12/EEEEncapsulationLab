@@ -309,12 +309,12 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnterRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterRecordActionPerformed
-        foundIndex = NOT_FOUND;
+        setFoundIndex(NOT_FOUND);
 
         setPartNo(this.txtNewProdNo.getText());
-        partDesc = this.txtNewProdDesc.getText();
+        setPartDesc(this.txtNewProdDesc.getText());
         try {
-            partPrice = Double.parseDouble(this.txtNewProdPrice.getText());
+            setPartPrice(Double.parseDouble(this.txtNewProdPrice.getText()));
         } catch(Exception e) {
             JOptionPane.showMessageDialog(this,
                     "Sorry, the price entry must be a whole or floating point number only.\n",
@@ -322,12 +322,12 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
             return;
         }
 
-        if (emptyRow > 10) {
+        if (getEmptyRow() > 10) {
             JOptionPane.showMessageDialog(this, 
                     "Sorry, you have reach the maximum of 10 items.\n"
                     + "No more items can be saved.", "Maximum Reached", JOptionPane.WARNING_MESSAGE);
 
-        } else if (partNo.length() == 0 || partDesc.length() == 0 
+        } else if (getPartNo().length() == 0 || getPartDesc().length() == 0 
                 || this.txtNewProdPrice.getText().length() == 0)
         {
             JOptionPane.showMessageDialog(this, 
@@ -336,10 +336,10 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
             this.txtNewProdNo.requestFocus();
 
         } else {
-            partNums[emptyRow] = partNo;
-            partDescs[emptyRow] = partDesc;
-            partPrices[emptyRow] = partPrice;
-            this.emptyRow += 1;
+            partNums[getEmptyRow()] = getPartNo();
+            partDescs[getEmptyRow()] = getPartDesc();
+            partPrices[getEmptyRow()] = getPartPrice();
+            setEmptyRow(getEmptyRow() + 1);
         }
 
         clearEntryFields();
@@ -400,7 +400,7 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         listProducts.setText(""); // clear list
         listProducts.append("Part\tDesc\t\tPrice\n====\t====\t\t=====\n");
-        for (int i = 0 ; i < emptyRow; i++) {
+        for (int i = 0 ; i < getEmptyRow(); i++) {
             String rLine = partNums[i] + "\t"
                     + partDescs[i] + "\t\t" + nf.format(partPrices[i]) + "\n";
             listProducts.append(rLine);
@@ -410,11 +410,11 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
     // Sort by partNumber
     private void sortList() {
         // Only perform the sort if we have records
-        if(emptyRow > 0) {
+        if(getEmptyRow() > 0) {
             // Bubble sort routine adapted from sample in text book...
             // Make sure the operations are peformed on all 3 arrays!
-            for(int passNum = 1; passNum < emptyRow; passNum++) {
-                for(int i = 1; i <= emptyRow-passNum; i++) {
+            for(int passNum = 1; passNum < getEmptyRow(); passNum++) {
+                for(int i = 1; i <= getEmptyRow()-passNum; i++) {
                     String temp = "";
                     temp += partPrices[i-1];
                     partPrices[i-1] = partPrices[i];

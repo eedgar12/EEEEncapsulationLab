@@ -25,7 +25,7 @@ public class Employee {
     public Employee() {
 
     }
-    
+
     public String getFirstName() {
         //needs validation
         return firstName;
@@ -46,6 +46,16 @@ public class Employee {
         this.lastName = lastName;
     }
 
+    public String getSsn() {
+        //needs validation
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        //needs validation
+        this.ssn = ssn;
+    }
+
     public Date getBirthDate() {
         //needs validation
         return birthDate;
@@ -56,11 +66,43 @@ public class Employee {
         this.birthDate = birthDate;
     }
 
+    public boolean isMetWithHr() {
+        //needs validation
+        return metWithHr;
+    }
+
+    public void setMetWithHr(boolean metWithHr) {
+        //needs validation
+        this.metWithHr = metWithHr;
+    }
+
+    public boolean isMetDeptStaff() {
+        //needs validation
+        return metDeptStaff;
+    }
+
+    public void setMetDeptStaff(boolean metDeptStaff) {
+        //needs validation
+        this.metDeptStaff = metDeptStaff;
+    }
+
+    public boolean isReviewedDeptPolicies() {
+        //needs validation
+        return reviewedDeptPolicies;
+    }
+
+    public void setReviewedDeptPolicies(boolean reviewedDeptPolicies) {
+        //needs validation
+        this.reviewedDeptPolicies = reviewedDeptPolicies;
+    }
+
     public boolean isMovedIn() {
+        //needs validation
         return movedIn;
     }
 
     public void setMovedIn(boolean movedIn) {
+        //needs validation
         this.movedIn = movedIn;
     }
 
@@ -73,29 +115,20 @@ public class Employee {
         //needs validation
         this.cubeId = cubeId;
     }
-
-    public String getSsn() {
-        //needs validation
-        return ssn;
-    }
-
-    public void setSsn(String ssn) {
-        //needs validation
-        this.ssn = ssn;
-    }
     
+   
 
     
 
     // Assume this must be performed first
     private void meetWithHrForBenefitAndSalryInfo() {
-        metWithHr = true;
+        setMetWithHr(true);
     }
 
     // Assume this is must be performed second
     private void meetDepartmentStaff() {
-        if(metWithHr) {
-            metDeptStaff = true;
+        if(isMetWithHr()) {
+            setMetDeptStaff(true);
         } else {
             throw new IllegalStateException("Sorry, you cannot meet with "
                     + "department staff until you have met with HR.");
@@ -104,8 +137,8 @@ public class Employee {
 
     // Assume this must be performed third
     private void reviewDeptPolicies() {
-        if(metWithHr && metDeptStaff) {
-            reviewedDeptPolicies = true;
+        if(isMetWithHr() && isMetDeptStaff()) {
+            setReviewedDeptPolicies(true);
         } else {
             throw new IllegalStateException("Sorry, you cannot review "
                     + " department policies until you have first met with HR "
@@ -117,14 +150,14 @@ public class Employee {
     private void moveIntoCubicle(String cubeId) {
         //needs validation for CubeId
         
-        if(metWithHr && metDeptStaff && reviewedDeptPolicies) {
+        if(isMetWithHr() && isMetDeptStaff() && isReviewedDeptPolicies()) {
             
             /*Would there be a better way to do this so it doesn't have to pass 
              * parameters through several methods?  Should I use getCubeId() here?
              */
             
-            this.cubeId = cubeId;
-            this.movedIn = true;
+            setCubeId(cubeId);
+            setMovedIn(true);
         } else {
             throw new IllegalStateException("Sorry, you cannot move in to a "
                     + "cubicle until you have first met with HR "
@@ -144,8 +177,8 @@ public class Employee {
     
     
     public String getStatus() {
-        if(metWithHr && metDeptStaff
-           && reviewedDeptPolicies && movedIn) {
+        if(isMetWithHr() && isMetDeptStaff()
+           && isReviewedDeptPolicies() && isMovedIn()) {
             return "Orientation is complete";
         } else {
             return "Orientation in progress...";
