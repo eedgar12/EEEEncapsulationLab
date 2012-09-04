@@ -29,13 +29,16 @@ public class GameCharacter {
     }
     
     
-    public void move(GameBoard space){
-        GameDie die = new GameDie();
-        die.roll();
-        
+    
+    public void move(int number){
+        setCurrentSpace(getCurrentSpace() + number);
     }
     
     public int getCurrentSpace(){
          return currentSpace;
      }
+    
+    public void setCurrentSpace(int space){
+        currentSpace = space;
+    }
 }

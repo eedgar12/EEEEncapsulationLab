@@ -10,20 +10,28 @@ package lab2;
  */
 public class Game {
     GUI gui = new GUI();
-    GameDie die = new GameDie();
+    GameBoard gameBoard = new GameBoard();
     GameCharacter player1 = new GameCharacter();
     GameCharacter player2 = new GameCharacter();
+    GameDie die = new GameDie();
     
-    private int numOfPlayers;
-    
-    
+    private boolean gameWon = false;
+    private int roll;
     public void startGame(){
         
         
+        getPlayer1Name();
+        getPlayer2Name();
+        
         //While someone has not won yet,
-            die.roll();
-            //Move
-            //gui.displayMove(space);
+            gui.displayCurrentSpace(player1.getCurrentSpace());
+            roll = die.roll();
+            gui.displayMove(player1.getCurrentSpace(), roll);
+            player1.move(roll);
+            gui.displayInstruction(gameBoard.getGuiInstruction(player1.getCurrentSpace()));
+            player1.move(gameBoard.getMoveDirection(player1.getCurrentSpace()));
+            gui.displayCurrentSpace(player1.getCurrentSpace());
+            
             //Move
         
     }
@@ -34,9 +42,19 @@ public class Game {
 //    }
     
     private void getPlayer1Name(){
-        
-        //input players names based on the number of players playing
-        
+        player1.setName(gui.inputPlayerName());
         
     }
+    private void getPlayer2Name(){
+        player1.setName(gui.inputPlayerName());
+        
+    }
+    
+    private boolean isGameWon(){
+        //if (player1.position == 19 || player2.position == 19){
+        //return true;
+        //else return false;
+        return false;
+    }
+    
 }

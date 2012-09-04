@@ -14,7 +14,7 @@ public class GUI {
     Scanner keyboard = new Scanner(System.in);
     
     
-    public String inputPlayersName(){
+    public String inputPlayerName(){
         System.out.println("Please enter your name");
         //needs validation
         return keyboard.nextLine();
@@ -27,12 +27,21 @@ public class GUI {
         return keyboard.nextInt();
     }
     
-    public String displayMove(int space){
-        GameBoard board = new GameBoard();
-        return board.getSpaceDirection(space);
+    public void displayMove(int currentSpace, int spacesToMove){
+        int responce = currentSpace + spacesToMove;
+        System.out.println("Your character moved " + responce + " space{s)");
+        
+    }
+    
+    public void displayInstruction(String spaceInstruction){
+        System.out.println(spaceInstruction);
     }
     
     public void move(int roll){
         System.out.println("Move ahead " + roll + " spaces");
+    }
+    
+    public void displayCurrentSpace(int space){
+        System.out.println("You are on space " + (space + 1));
     }
 }
