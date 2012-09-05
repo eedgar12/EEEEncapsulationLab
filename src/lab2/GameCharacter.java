@@ -40,6 +40,11 @@ public class GameCharacter {
      }
     
     public void setCurrentSpace(int space){
-        currentSpace = space;
+        if (space > 19){
+            currentSpace = 20;
+        }
+        else{  
+            currentSpace = space;
+        }
     }
 }

@@ -36,11 +36,11 @@ public class GUI {
         return keyboard.nextInt();
     }
     
-    public void displayMove(int currentSpace, int spacesToMove){
-        int responce = currentSpace + spacesToMove;
-        System.out.println("Your character moved " + responce + " space{s)");
-        
-    }
+//    public void displayMove(int currentSpace, int spacesToMove){
+//        int responce = currentSpace + spacesToMove;
+//        System.out.println("Your character moved " + responce + " space{s)");
+//        
+//    }
     
     public void displayInstruction(String spaceInstruction){
         System.out.println(spaceInstruction);
