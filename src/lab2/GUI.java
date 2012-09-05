@@ -17,6 +17,15 @@ public class GUI {
     public String inputPlayerName(){
         System.out.println("Please enter your name");
         //needs validation
+     //  String response = keyboard.nextLine();
+//        if (!(response == null)){
+//          return response;  
+//        }
+//        
+//        else{
+//            System.out.println("Null error in inputPlayerName");
+//            return "Error";
+//        }
         return keyboard.nextLine();
     }
     
@@ -44,4 +53,10 @@ public class GUI {
     public void displayCurrentSpace(int space){
         System.out.println("You are on space " + (space + 1));
     }
+    
+    public void roll(){
+        System.out.println("Rolling...");
+    }
+    
+    
 }
