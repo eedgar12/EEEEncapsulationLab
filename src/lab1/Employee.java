@@ -27,7 +27,6 @@ public class Employee {
     }
 
     public String getFirstName() {
-        //needs validation
         return firstName;
     }
 
@@ -37,7 +36,6 @@ public class Employee {
     }
 
     public String getLastName() {
-        //needs validation
         return lastName;
     }
 
@@ -47,7 +45,6 @@ public class Employee {
     }
 
     public String getSsn() {
-        //needs validation
         return ssn;
     }
 
@@ -57,7 +54,6 @@ public class Employee {
     }
 
     public Date getBirthDate() {
-        //needs validation
         return birthDate;
     }
 
@@ -67,7 +63,6 @@ public class Employee {
     }
 
     public boolean isMetWithHr() {
-        //needs validation
         return metWithHr;
     }
 
@@ -77,7 +72,6 @@ public class Employee {
     }
 
     public boolean isMetDeptStaff() {
-        //needs validation
         return metDeptStaff;
     }
 
@@ -87,7 +81,6 @@ public class Employee {
     }
 
     public boolean isReviewedDeptPolicies() {
-        //needs validation
         return reviewedDeptPolicies;
     }
 
@@ -97,7 +90,6 @@ public class Employee {
     }
 
     public boolean isMovedIn() {
-        //needs validation
         return movedIn;
     }
 
@@ -107,7 +99,6 @@ public class Employee {
     }
 
     public String getCubeId() {
-        //needs validation
         return cubeId;
     }
 
@@ -147,7 +138,7 @@ public class Employee {
     }
 
     // Assume this must be performed 4th
-    private void moveIntoCubicle(String cubeId) {
+    private void moveIntoCubicle() {
         //needs validation for CubeId
         
         if(isMetWithHr() && isMetDeptStaff() && isReviewedDeptPolicies()) {
@@ -156,7 +147,11 @@ public class Employee {
              * parameters through several methods?  Should I use getCubeId() here?
              */
             
-            setCubeId(cubeId);
+            /*
+             * cubeId isn't used in this method.  I don't see a need to put it in 
+             * this method at all.
+             */
+            
             setMovedIn(true);
         } else {
             throw new IllegalStateException("Sorry, you cannot move in to a "
@@ -168,11 +163,11 @@ public class Employee {
     }
 
     
-    public void newEmployeeProcess(String cubeID){
+    public void newEmployeeProcess(){
         meetWithHrForBenefitAndSalryInfo();
         meetDepartmentStaff();
         reviewDeptPolicies();
-        moveIntoCubicle(cubeId);
+        moveIntoCubicle();
     }
     
     

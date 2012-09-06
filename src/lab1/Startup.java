@@ -11,14 +11,16 @@ package lab1;
 public class Startup {
     public static void main(String[] args) {
         Employee employee = new Employee();
+        GUI gui = new GUI();
+        
         employee.setFirstName("Peter");
         employee.setLastName("Piper");
         employee.setSsn("333-1234");
         employee.setCubeId("B36");
         
-        employee.newEmployeeProcess(employee.getCubeId());
+        employee.newEmployeeProcess();
 
-        System.out.println("The employee's status is: " + employee.getStatus());
+        gui.outputStatus(employee);
     }
     
     

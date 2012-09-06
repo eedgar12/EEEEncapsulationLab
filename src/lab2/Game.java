@@ -13,15 +13,19 @@ public class Game {
     GameBoard gameBoard = new GameBoard();
     GameCharacter player1 = new GameCharacter();
     GameCharacter player2 = new GameCharacter();
+    
+    GameCharacter[] players;
+    
     GameDie die = new GameDie();
     
     private boolean gameWon = false;
     private int roll;
     private GameCharacter playerWon;
-    
+    private int numOfPlayers;
     
     
     public void startGame(){
+        
         
         
         getPlayer1Name();
@@ -71,6 +75,20 @@ public class Game {
         
     }
     
+    public void getPlayerName(GameCharacter player){
+        player.setName(gui.inputPlayerName());
+    }
+
+    public int getNumOfPlayers() {
+        return numOfPlayers;
+    }
+
+    public void setNumOfPlayers(int numOfPlayers) {
+        this.numOfPlayers = numOfPlayers;
+    }
+    
+    
+    
     public boolean isGameWon(){
         if (player1.getCurrentSpace() >= 19){
             setPlayerWon(player1);
@@ -94,6 +112,11 @@ public class Game {
         this.playerWon = playerWon;
     }
     
-    
+//    public void instantiatePlayersArray(){
+//        String[5] playerNames = {"", "", "", "", "", ""};
+//        setNumOfPlayers(gui.inputNumOfPlayers());
+//        
+//        
+//    }
     
 }
