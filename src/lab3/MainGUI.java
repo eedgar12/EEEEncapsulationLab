@@ -23,23 +23,10 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
     private final int MAX_RECS = 10;
     private final int NOT_FOUND = -1;
 
-    private String partNo;
     private int foundIndex = NOT_FOUND;
-    private String partDesc;
-    private double partPrice;
-
-    public String getPartNo() {
-        //needs validation
-        return partNo;
-    }
-
-    public void setPartNo(String partNo) {
-        //needs validation
-        this.partNo = partNo;
-    }
+    
 
     public int getFoundIndex() {
-        //needs validation
         return foundIndex;
     }
 
@@ -48,25 +35,7 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
         this.foundIndex = foundIndex;
     }
 
-    public String getPartDesc() {
-        //needs validation
-        return partDesc;
-    }
 
-    public void setPartDesc(String partDesc) {
-        //needs validation
-        this.partDesc = partDesc;
-    }
-
-    public double getPartPrice() {
-        //needs validation
-        return partPrice;
-    }
-
-    public void setPartPrice(double partPrice) {
-        //needs validation
-        this.partPrice = partPrice;
-    }
 
     String[] partNums = new String[10];
     String[] partDescs = new String[10];
@@ -74,7 +43,6 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
     private int emptyRow;
 
     public int getEmptyRow() {
-        //needs validation
         return emptyRow;
     }
 
@@ -310,11 +278,11 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
 
     private void btnEnterRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterRecordActionPerformed
         setFoundIndex(NOT_FOUND);
-
-        setPartNo(this.txtNewProdNo.getText());
-        setPartDesc(this.txtNewProdDesc.getText());
+        Part part = new Part();
+        part.setPartNo(this.txtNewProdNo.getText());
+        part.setPartDesc(this.txtNewProdDesc.getText());
         try {
-            setPartPrice(Double.parseDouble(this.txtNewProdPrice.getText()));
+            part.setPartPrice(Double.parseDouble(this.txtNewProdPrice.getText()));
         } catch(Exception e) {
             JOptionPane.showMessageDialog(this,
                     "Sorry, the price entry must be a whole or floating point number only.\n",
@@ -327,7 +295,7 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
                     "Sorry, you have reach the maximum of 10 items.\n"
                     + "No more items can be saved.", "Maximum Reached", JOptionPane.WARNING_MESSAGE);
 
-        } else if (getPartNo().length() == 0 || getPartDesc().length() == 0 
+        } else if (part.getPartNo().length() == 0 || part.getPartDesc().length() == 0 
                 || this.txtNewProdPrice.getText().length() == 0)
         {
             JOptionPane.showMessageDialog(this, 
@@ -336,14 +304,19 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
             this.txtNewProdNo.requestFocus();
 
         } else {
-            partNums[getEmptyRow()] = getPartNo();
-            partDescs[getEmptyRow()] = getPartDesc();
-            partPrices[getEmptyRow()] = getPartPrice();
+            partNums[getEmptyRow()] = part.getPartNo();
+            partDescs[getEmptyRow()] = part.getPartDesc();
+            partPrices[getEmptyRow()] = part.getPartPrice();
             setEmptyRow(getEmptyRow() + 1);
         }
 
+        
+        
         clearEntryFields();
         this.txtNewProdNo.requestFocus();
+        
+        
+        
 }//GEN-LAST:event_btnEnterRecordActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

@@ -14,8 +14,8 @@ public class GUI {
     Scanner keyboard = new Scanner(System.in);
     
     
-    public String inputPlayerName(){
-        System.out.println("Please enter your name");
+    public String inputPlayerName(int playerNum){
+        System.out.println("Player " + (playerNum + 1) + ": Please enter your name");
         //needs validation
      //  String response = keyboard.nextLine();
 //        if (!(response == null)){

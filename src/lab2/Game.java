@@ -14,7 +14,7 @@ public class Game {
     GameCharacter player1 = new GameCharacter();
     GameCharacter player2 = new GameCharacter();
     
-    GameCharacter[] players;
+    
     
     GameDie die = new GameDie();
     
@@ -24,34 +24,58 @@ public class Game {
     private int numOfPlayers;
     
     
+    
     public void startGame(){
         
+        setNumOfPlayers(gui.inputNumOfPlayers());
+        String[] names;
+        GameCharacter[] players = new GameCharacter[getNumOfPlayers()];
         
         
-        getPlayer1Name();
-        getPlayer2Name();
+        for (int i = 0; i < getNumOfPlayers(); i++){
+            players[i] = new GameCharacter();
+            players[i].setName(gui.inputPlayerName(i));
+        }
+        
         
         while (!isGameWon()){
-            System.out.println("\n" + player1.getName() + "'s turn");
-            gui.displayCurrentSpace(player1.getCurrentSpace());
+            for (int i = 0; i < getNumOfPlayers(); i++){
+                System.out.println("\n" + players[i].getName() + "'s turn");
+            gui.displayCurrentSpace(players[i].getCurrentSpace());
             gui.roll();
             roll = die.roll();
      //       gui.displayMove(player1.getCurrentSpace(), roll);
-            player1.move(roll);
-            gui.displayInstruction(gameBoard.getGuiInstruction(player1.getCurrentSpace()));
-            player1.move(gameBoard.getMoveDirection(player1.getCurrentSpace()));
-            gui.displayCurrentSpace(player1.getCurrentSpace());
-            
-            System.out.println("\n" + player2.getName() + "'s turn");
-            gui.displayCurrentSpace(player2.getCurrentSpace());
-            gui.roll();
-            roll = die.roll();
-     //       gui.displayMove(player2.getCurrentSpace(), roll);
-            player2.move(roll);
-            gui.displayInstruction(gameBoard.getGuiInstruction(player2.getCurrentSpace()));
-            player2.move(gameBoard.getMoveDirection(player2.getCurrentSpace()));
-            gui.displayCurrentSpace(player2.getCurrentSpace());
+            players[i].move(roll);
+            gui.displayInstruction(gameBoard.getGuiInstruction(players[i].getCurrentSpace()));
+            players[i].move(gameBoard.getMoveDirection(players[i].getCurrentSpace()));
+            gui.displayCurrentSpace(players[i].getCurrentSpace());
+            }
         }
+        
+//        getPlayer1Name();
+//        getPlayer2Name();
+//        
+//        while (!isGameWon()){
+//            System.out.println("\n" + player1.getName() + "'s turn");
+//            gui.displayCurrentSpace(player1.getCurrentSpace());
+//            gui.roll();
+//            roll = die.roll();
+//     //       gui.displayMove(player1.getCurrentSpace(), roll);
+//            player1.move(roll);
+//            gui.displayInstruction(gameBoard.getGuiInstruction(player1.getCurrentSpace()));
+//            player1.move(gameBoard.getMoveDirection(player1.getCurrentSpace()));
+//            gui.displayCurrentSpace(player1.getCurrentSpace());
+//            
+//            System.out.println("\n" + player2.getName() + "'s turn");
+//            gui.displayCurrentSpace(player2.getCurrentSpace());
+//            gui.roll();
+//            roll = die.roll();
+//     //       gui.displayMove(player2.getCurrentSpace(), roll);
+//            player2.move(roll);
+//            gui.displayInstruction(gameBoard.getGuiInstruction(player2.getCurrentSpace()));
+//            player2.move(gameBoard.getMoveDirection(player2.getCurrentSpace()));
+//            gui.displayCurrentSpace(player2.getCurrentSpace());
+//        }
             
         System.out.println("Congratulations " + playerWon.getName() +
                 " You just won!");
@@ -65,19 +89,19 @@ public class Game {
 //        return numOfPlayers;
 //    }
     
-    public void getPlayer1Name(){
-        player1.setName(gui.inputPlayerName());
-        
-    }
-    
-    public void getPlayer2Name(){
-        player2.setName(gui.inputPlayerName());
-        
-    }
-    
-    public void getPlayerName(GameCharacter player){
-        player.setName(gui.inputPlayerName());
-    }
+//    public void getPlayer1Name(){
+//        player1.setName(gui.inputPlayerName());
+//        
+//    }
+//    
+//    public void getPlayer2Name(){
+//        player2.setName(gui.inputPlayerName());
+//        
+//    }
+//    
+//    public void getPlayerName(GameCharacter player){
+//        player.setName(gui.inputPlayerName());
+//    }
 
     public int getNumOfPlayers() {
         return numOfPlayers;
