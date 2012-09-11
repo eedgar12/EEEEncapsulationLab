@@ -14,8 +14,6 @@ public class Game {
     GameCharacter player1 = new GameCharacter();
     GameCharacter player2 = new GameCharacter();
     
-    
-    
     GameDie die = new GameDie();
     
     private boolean gameWon = false;
@@ -23,32 +21,32 @@ public class Game {
     private GameCharacter playerWon;
     private int numOfPlayers;
     
-    
-    
     public void startGame(){
         
         setNumOfPlayers(gui.inputNumOfPlayers());
         String[] names;
         GameCharacter[] players = new GameCharacter[getNumOfPlayers()];
         
-        
-        for (int i = 0; i < getNumOfPlayers(); i++){
+        players[0].setName(gui.inputPlayerName(0));
+        for (int i = 1; i < getNumOfPlayers(); i++){
             players[i] = new GameCharacter();
             players[i].setName(gui.inputPlayerName(i));
         }
         
+        GameCharacter currentPlayer = players[0];
         
-        while (!isGameWon()){
+        while (!isGameWon(currentPlayer)){
             for (int i = 0; i < getNumOfPlayers(); i++){
                 System.out.println("\n" + players[i].getName() + "'s turn");
-            gui.displayCurrentSpace(players[i].getCurrentSpace());
-            gui.roll();
-            roll = die.roll();
-     //       gui.displayMove(player1.getCurrentSpace(), roll);
-            players[i].move(roll);
-            gui.displayInstruction(gameBoard.getGuiInstruction(players[i].getCurrentSpace()));
-            players[i].move(gameBoard.getMoveDirection(players[i].getCurrentSpace()));
-            gui.displayCurrentSpace(players[i].getCurrentSpace());
+                gui.displayCurrentSpace(players[i].getCurrentSpace());
+                gui.roll();
+                roll = die.roll();
+     //         gui.displayMove(player1.getCurrentSpace(), roll);
+                players[i].move(roll);
+                gui.displayInstruction(gameBoard.getGuiInstruction(players[i].getCurrentSpace()));
+                players[i].move(gameBoard.getMoveDirection(players[i].getCurrentSpace()));
+                gui.displayCurrentSpace(players[i].getCurrentSpace());
+            
             }
         }
         
@@ -113,15 +111,16 @@ public class Game {
     
     
     
-    public boolean isGameWon(){
-        if (player1.getCurrentSpace() >= 19){
-            setPlayerWon(player1);
+    public boolean isGameWon(GameCharacter player){
+        
+        if (player.getCurrentSpace() >= 19){
+            setPlayerWon(player);
             return true;
         }
-        else if (player2.getCurrentSpace() >= 19){
-            setPlayerWon(player2);
-            return true;
-        }
+//        else if (player2.getCurrentSpace() >= 19){
+//            setPlayerWon(player2);
+//            return true;
+//        }
         else {
            return false; 
         }

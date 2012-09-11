@@ -13,11 +13,10 @@ import java.util.Scanner;
 public class GUI {
     Scanner keyboard = new Scanner(System.in);
     
-    
     public String inputPlayerName(int playerNum){
         System.out.println("Player " + (playerNum + 1) + ": Please enter your name");
         //needs validation
-     //  String response = keyboard.nextLine();
+//       String response = keyboard.nextLine();
 //        if (!(response == null)){
 //          return response;  
 //        }
